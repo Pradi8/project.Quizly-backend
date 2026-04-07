@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auth_app',
-    'quiz_app',
+    'quizly_app',
     'rest_framework'
 ]
 
