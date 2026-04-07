@@ -20,11 +20,11 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 # Installation
 ## Follow these steps to set up the project locally:
 
-## Requirements: Python 3.14.
+## Requirements: Python 3.12
 
 ## 1. Clone the repository
-  git clone https://github.com/Pradi8/coderr-backend.git <br>       
-  cd coderr-backend
+  git clone https://github.com/Pradi8/project.Quizly-backend <br>   
+  cd Quizly-backend
 
 ## 2. Create a virtual environment
   ```bash 
@@ -69,7 +69,7 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 
 
 # Project Structure
-## coderr_app/
+## quizly_app/
 ├── models.py        # Offer, Offerdetails <br>
 ├── views.py         # API views  <br>
 ├── paginations.py   # API paginations  <br>
