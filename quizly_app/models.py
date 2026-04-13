@@ -7,15 +7,21 @@ class Quiz(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     video_url = models.URLField(blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
 class Question(models.Model):
     question = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     question_title = models.CharField(max_length=255)
-    question_options = models.Choices(
+    OPTION_CHOICES = [
         ('Option A', 'Option A'),
         ('Option B', 'Option B'),
         ('Option C', 'Option C'),
         ('Option D', 'Option D')
-    )
-    answer = models.OneToOneField(question_options, on_delete=models.CASCADE)
+    ]
+    answer = models.CharField(max_length=8, choices=OPTION_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.question_title
