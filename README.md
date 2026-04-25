@@ -43,8 +43,32 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 
 ## 4. Install Python dependencies
 ```bash
-  pip install -r requirements.txt
+  python -m pip install -r requirements.txt
 ```
+
+
+sudo apt update
+sudo apt install ffmpeg
+
+## 🐧 Redis Installation
+
+### WSL / Linux (Ubuntu)
+
+```bash
+nicht in env modus !
+sudo apt update
+sudo apt install redis-server
+
+redis-server
+
+mac os:
+brew install redis
+redis-server
+
+windows:
+pip install redis
+
+
 
 ## 5. Create database migrations
 ```bash

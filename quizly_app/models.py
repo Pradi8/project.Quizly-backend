@@ -17,7 +17,8 @@ class Question(models.Model):
     question_title = models.CharField(max_length=255)
     question_options = models.JSONField()
     answer = models.CharField(max_length=255)
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     # question = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     # question_title = models.CharField(max_length=255)
