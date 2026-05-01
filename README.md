@@ -69,6 +69,10 @@ windows:
 pip install redis
 
 
+sudo apt update
+sudo apt install ffmpeg
+
+
 
 ## 5. Create database migrations
 ```bash
