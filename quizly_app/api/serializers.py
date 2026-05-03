@@ -16,9 +16,11 @@ class QuizSerializer(serializers.ModelSerializer):
 
     # Response-Field
     video_url = serializers.URLField(read_only=True)
+
+    questions = QuestionSerializer(many=True, read_only=True)
     class Meta:
         model = Quiz
-        fields = ['id', 'title', 'description', 'created_at', 'updated_at', 'video_url', 'url']
+        fields = ['id', 'title', 'description', 'created_at', 'updated_at', 'video_url', 'url', 'questions']
 
     def create(self, validated_data):
         validated_data.pop("url")
