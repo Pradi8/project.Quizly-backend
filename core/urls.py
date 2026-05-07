@@ -24,5 +24,3 @@ urlpatterns = [
     path('api/', include('auth_app.api.urls')),
     path('api/', include('quizly_app.api.urls')),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

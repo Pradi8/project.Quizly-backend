@@ -1,18 +1,26 @@
 import yt_dlp
+import os
+import tempfile
 
-def download_audio(url, quiz_id):
+def download_audio(url):
+    temp_dir = tempfile.gettempdir()
+
     ydl_opts = {
         "format": "bestaudio/best",
-        "outtmpl": f"media/audio/{quiz_id}.%(ext)s",
-        "postprocessors": [{
-            "key": "FFmpegExtractAudio",
-            "preferredcodec": "mp3",
-        }],
+        "outtmpl": os.path.join(temp_dir, "audio.%(ext)s"),
+        # "postprocessors": [
+        #     {
+        #         "key": "FFmpegExtractAudio",
+        #         "preferredcodec": "mp3",
+        #         "preferredquality": "192",
+        #     }
+        # ],
+        "quiet": True,
+        "noplaylist": True,
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=True)
 
-        file_path = ydl.prepare_filename(info).replace(".webm", ".mp3")
-
-    return file_path, info
+    file_path = ydl.prepare_filename(info)
+    return file_path

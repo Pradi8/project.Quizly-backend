@@ -23,10 +23,6 @@ api_key = os.getenv("GEMINI_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "/media/"
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -52,16 +48,7 @@ INSTALLED_APPS = [
     'quizly_app',
     'rest_framework',
     'rest_framework_simplejwt',
-    'django_rq',
 ]
-
-RQ_QUEUES = {
-    "default": {
-        "HOST": "localhost",
-        "PORT": 6379,
-        "DB": 0,
-    }
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -7,7 +7,6 @@ class Quiz(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     video_url = models.URLField(blank=True, null=True)
-    audio_file = models.FileField(upload_to="audio/", null=True, blank=True)
 
     def __str__(self):
         return self.title

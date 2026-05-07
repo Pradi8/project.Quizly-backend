@@ -8,20 +8,21 @@ load_dotenv()
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# model = genai.GenerativeModel("gemini-1.5-flash")
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 def generate_quiz(text):
     prompt = f"""
-    Erstelle genau 10 Quizfragen aus dem Text.
+        Du bist ein strikter JSON-Generator.
 
-    Format:
+        Gib ausschließlich gültiges JSON zurück.
+        Keine Erklärungen. Kein Markdown. Kein Codeblock. Kein zusätzlicher Text.
 
-    {{
-    "title": "string",
-    "description": "string",
-    "questions": [
+        Schema:
         {{
+            "title": "string",
+            "description": "string",
+            "questions": [
+            {{
             "question_title": "string",
             "question_options": ["A", "B", "C", "D"],
             "answer": "string"
@@ -29,10 +30,16 @@ def generate_quiz(text):
     ]
 }}
 
-Text:
-{text}
+Regeln:
+- Erstelle genau 10 Fragen
+- Jede Frage hat genau 4 Antwortmöglichkeiten (A, B, C, D)
+- Die Antwort muss exakt eine der Optionen sein
+- Keine zusätzlichen Felder
+- Kein Text außerhalb des JSON
 
-    """
+Transkript:
+    {text}
+"""
 
     response = model.generate_content(prompt)
     if not response.text:
