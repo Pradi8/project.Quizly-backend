@@ -4,6 +4,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .serializers import RegistrationSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.response import Response
 
 class RegistrationView(APIView):
     """
@@ -35,9 +37,17 @@ class CookieTokenObtainPairView(TokenObtainPairView):
         serializer.is_valid(raise_exception=True)
         user = serializer.user
      
-        response = super().post(request, *args, **kwargs)
-        refresh = response.data.get("refresh")
-        access = response.data.get("access")
+        access = serializer.validated_data["access"]
+        refresh = serializer.validated_data["refresh"]
+
+        response = Response({
+            "detail": "Login successful",
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email
+            }
+        })
 
         response.set_cookie(
             key="access_token",
@@ -54,12 +64,6 @@ class CookieTokenObtainPairView(TokenObtainPairView):
             secure=True,
             samesite="Lax"
         )
-
-        response.data = {"detail": "Login successful!",
-                         "user": {
-                             "id": user.id, "username": user.username, "email": user.email
-                             }
-                        }
         
         return response
     

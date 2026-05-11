@@ -1,8 +1,11 @@
 from django.urls import path
+from quizly_app.api.views import QuizDetailView, QuizListView
 
-from quizly_app.api.views import QuizListView
+# ------------------------------
+# Endpoints Quizly:
+# ------------------------------
 
 urlpatterns = [
     path('quizzes/', QuizListView.as_view(), name='quiz-list-view'),
-    # path('questions/', include('quizly_app.api.question_urls')),
+    path('quizzes/<int:pk>/', QuizDetailView.as_view(), name='quiz-detail-view'),
 ]

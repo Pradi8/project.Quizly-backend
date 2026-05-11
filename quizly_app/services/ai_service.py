@@ -12,34 +12,50 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 def generate_quiz(text):
     prompt = f"""
-        Du bist ein strikter JSON-Generator.
+      
+    Based on the following transcript, generate a quiz in valid JSON format.
 
-        Gib ausschließlich gültiges JSON zurück.
-        Keine Erklärungen. Kein Markdown. Kein Codeblock. Kein zusätzlicher Text.
+    The quiz must follow this exact structure:
 
-        Schema:
+    {{
+
+        "title": "Create a concise quiz title based on the topic of the transcript.",
+
+        "description": "Summarize the transcript in no more than 150 characters. Do not include any quiz questions or answers.",
+
+        "questions": [
+
         {{
-            "title": "string",
-            "description": "string",
-            "questions": [
-            {{
-            "question_title": "string",
-            "question_options": ["A", "B", "C", "D"],
-            "answer": "string"
-        }}
-    ]
-}}
 
-Regeln:
-- Erstelle genau 10 Fragen
-- Jede Frage hat genau 4 Antwortmöglichkeiten (A, B, C, D)
-- Die Antwort muss exakt eine der Optionen sein
-- Keine zusätzlichen Felder
-- Kein Text außerhalb des JSON
+            "question_title": "The question goes here.",
 
-Transkript:
+            "question_options": ["Option A", "Option B", "Option C", "Option D"],
+
+            "answer": "The correct answer from the above options"
+
+        }},
+
+        ...
+
+        (exactly 10 questions)
+
+        ]
+
+    }}
+
+    Requirements:
+
+    - Each question must have exactly 4 distinct answer options.
+
+    - Only one correct answer is allowed per question, and it must be present in 'question_options'.
+
+    - The output must be valid JSON and parsable as-is (e.g., using Python's json.loads).
+
+    - Do not include explanations, comments, or any text outside the JSON.
+
+    transcript:
     {text}
-"""
+    """
 
     response = model.generate_content(prompt)
     if not response.text:

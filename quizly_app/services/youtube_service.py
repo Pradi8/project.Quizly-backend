@@ -8,13 +8,6 @@ def download_audio(url):
     ydl_opts = {
         "format": "bestaudio/best",
         "outtmpl": os.path.join(temp_dir, "audio.%(ext)s"),
-        # "postprocessors": [
-        #     {
-        #         "key": "FFmpegExtractAudio",
-        #         "preferredcodec": "mp3",
-        #         "preferredquality": "192",
-        #     }
-        # ],
         "quiet": True,
         "noplaylist": True,
     }

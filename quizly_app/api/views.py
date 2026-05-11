@@ -1,6 +1,7 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
+from auth_app.api.permissions import IsQuizlyUser
 from quizly_app.api.serializers import QuizSerializer
 from quizly_app.models import Quiz
 from quizly_app.tasks import process_video
@@ -10,7 +11,7 @@ from quizly_app.standardurl import normalize_youtube_url
 class QuizListView(generics.ListCreateAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         url = request.data.get("url")
@@ -30,3 +31,8 @@ class QuizListView(generics.ListCreateAPIView):
             QuizSerializer(quiz).data,
             status=status.HTTP_201_CREATED
         )
+    
+class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+    permission_classes = [IsQuizlyUser]

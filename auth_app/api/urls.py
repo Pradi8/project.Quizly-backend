@@ -1,9 +1,8 @@
 from django.urls import path
 from .views import CookieTokenRefreshView, LogoutView, RegistrationView, CookieTokenObtainPairView
 
-
 # ------------------------------
-# Endpoints
+# Endpoints Authentication:
 # ------------------------------
 
 urlpatterns = [
