@@ -133,6 +133,12 @@ Add to PATH: C:\ffmpeg\bin
 
 # Project Structure
 ```
+auth_app/
+├── api/
+│   ├── views.py
+│   ├── serializers.py
+│   ├── urls.py
+│   └── permissions.py
 quizly_app/
 ├── models.py
 ├── api/
@@ -146,14 +152,11 @@ quizly_app/
 ├── standardurl.py
 ├── tasks.py
 
-auth_app/
-├── api/
-│   ├── views.py
-│   ├── serializers.py
-│   ├── urls.py
-│   └── permissions.py
-```
+core/
+├── settings.py
 
 manage.py <br>
 requirements.txt <br>
 README.md
+
+```
