@@ -19,8 +19,6 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 
 ## Installation
 
-## Follow these steps to set up the project locally:
-
 ### Requirements
 - Python 3.12
 - ffmpeg
@@ -92,7 +90,7 @@ Add to PATH: C:\ffmpeg\bin
     powershell -c "irm https://deno.land/install.ps1 | iex"
 ```
 
-### Mac Os
+### Mac OS
 
 ##### install Homebrew
 
