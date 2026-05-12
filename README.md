@@ -3,24 +3,28 @@
 ## Overview
 Quizly is an AI-powered quiz application built with the **Django REST Framework**. Users can paste the URL of a YouTube video, after which the app automatically generates a summary of the video and creates a quiz with 10 questions using artificial intelligence. 
 Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to ensure secure management of user data.
+
 ---
 
 ## Features
 - User registration, login, and logout
-- CRUD operations for **Offers** , **Orders** and **Reviews**
-- Reviews system for oders, offers
-- Object-level permissions:
-  - Only authors can edit their reviews
-  - Only admins or authors can delete reviews
-- Token-based authentication
+- CRUD operations for quizzes (title, description)
+- Automatic quiz generation from YouTube videos
+- AI-powered question generation
+- Object-level permissions
+- JWT-based authentication
 - Browsable API for development
 
 ---
 
-# Installation
+## Installation
+
 ## Follow these steps to set up the project locally:
 
-## Requirements: Python 3.12
+### Requirements
+- Python 3.12
+- ffmpeg
+- yt-dlp
 
 ## 1. Clone the repository
   git clone https://github.com/Pradi8/project.Quizly-backend <br>   
@@ -46,50 +50,83 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
   python -m pip install -r requirements.txt
 ```
 
+## 5. Install system dependencies
 
-sudo apt update
-sudo apt install ffmpeg
+#### Install yt-dlp:
 
-## 🐧 Redis Installation
+```bash
+    pip install yt-dlp
+```
 
 ### WSL / Linux (Ubuntu)
 
+#### Install FFmpeg
+
 ```bash
-nicht in env modus !
-sudo apt update
-sudo apt install redis-server
+  sudo apt update
+  sudo apt install ffmpeg
+```
 
-redis-server
+#### Install Deno
 
-mac os:
-brew install redis
-redis-server
+```bash
+    curl -fsSL https://deno.land/install.sh | sh
+```
 
-windows:
-pip install redis
+### Windows
 
+#### Install FFmpeg
 
-sudo apt update
-sudo apt install ffmpeg
+Download
 
+```bash
+  https://ffmpeg.org/download.html
+```
+Extract to e.g. C:\ffmpeg
 
+Add to PATH: C:\ffmpeg\bin
 
-## 5. Create database migrations
+#### Install Deno
+
+```bash
+    powershell -c "irm https://deno.land/install.ps1 | iex"
+```
+
+### Mac Os
+
+##### install Homebrew
+
+```bash
+     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install FFmpeg
+
+```bash
+   brew install ffmpeg
+```
+#### Install Deno
+
+```bash
+   brew install deno
+```
+
+## 6. Create database migrations
 ```bash
   python manage.py makemigrations
 ```
 
-## 6. Apply database migrations
+## 7. Apply database migrations
 ```bash
   python manage.py migrate
 ```
 
-## 7. Create a superuser (admin account)
+## 8. Create a superuser (admin account)
 ```bash
   python manage.py createsuperuser
 ```
 
-## 8. Start the development server
+## 9. Start the development server
 ```bash
   python manage.py runserver  
 ```
@@ -97,20 +134,26 @@ sudo apt install ffmpeg
 
 
 # Project Structure
-## quizly_app/
-├── models.py        # Offer, Offerdetails <br>
-├── views.py         # API views  <br>
-├── paginations.py   # API paginations  <br>
-├── filters.py       # DRF filters  <br>
-├── serializers.py   # DRF serializers  <br>
-├── urls.py
+quizly_app/
+├── models.py
+├── api/
+│   ├── views.py
+│   ├── serializers.py
+│   └── urls.py
+├── services/
+│   ├── ai_service.py
+│   ├── audio_service.py
+│   └── youtube_service.py
+├── standardurl.py
+├── tasks.py
 
-## auth_app/
-├── models.py        # Customuser, Fileupload  <br>
-├── views.py         # Registration, login, logout  <br>
-├── serializers.py   # DRF serializers  <br>
-├── urls.py  <br>
-├── permissions.py   # Custom permissions
+
+auth_app/
+├── api/
+│   ├── views.py
+│   ├── serializers.py
+│   ├── urls.py
+│   └── permissions.py
 
 manage.py
 requirements.txt

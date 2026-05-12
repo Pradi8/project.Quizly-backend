@@ -2,14 +2,20 @@ from rest_framework import serializers
 from quizly_app.models import Question, Quiz
 
 class QuestionSerializer(serializers.ModelSerializer):
+    """ 
+    Serializer for Question model. 
+    """
     class Meta:
         model = Question
         fields = ['id', 'question_title', 'question_options', 'answer', 'created_at', 'updated_at']
         
 class QuizSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Quiz model.
+    """
 
-    title = serializers.CharField(read_only=True)
-    description = serializers.CharField(read_only=True)
+    title = serializers.CharField(required=False)
+    description = serializers.CharField(required=False)
 
     # Request-Field
     url = serializers.URLField(write_only=True)

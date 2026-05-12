@@ -9,6 +9,14 @@ from quizly_app.tasks import process_video
 from quizly_app.standardurl import normalize_youtube_url
 
 class QuizListView(generics.ListCreateAPIView):
+    """
+    API view for listing all quizzes and creating a new quiz.
+    - GET: Returns a list of all quizzes.
+    - POST: Creates a new quiz, normalizes the YouTube URL,
+      saves the quiz with the authenticated user,
+      and synchronously processes the video to generate quiz content.
+    """
+        
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
     permission_classes = [IsAuthenticated]
@@ -19,12 +27,13 @@ class QuizListView(generics.ListCreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        quiz = serializer.save(video_url=normalized_url)
+        quiz = serializer.save(video_url=normalized_url, user=request.user)
 
-        # 🔥 SYNCHRON (blockiert!)
+        # Process the video synchronously to generate quiz content
         process_video(quiz.id, quiz.video_url)
 
-        # 🔄 neu laden, weil Questions erstellt wurden
+        # Reload the quiz from the database because
+        # new questions and metadata may have been added
         quiz.refresh_from_db()
 
         return Response(
@@ -33,6 +42,16 @@ class QuizListView(generics.ListCreateAPIView):
         )
     
 class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API view for retrieving, updating, or deleting a single quiz.
+
+    - GET: Retrieve quiz details
+    - PATCH/PUT: Update quiz fields
+    - DELETE: Delete the quiz
+
+    Access is restricted to the quiz owner via custom permission.
+    """
+        
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
     permission_classes = [IsQuizlyUser]
