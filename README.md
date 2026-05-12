@@ -132,6 +132,7 @@ Add to PATH: C:\ffmpeg\bin
 
 
 # Project Structure
+```
 quizly_app/
 ├── models.py
 ├── api/
@@ -145,14 +146,14 @@ quizly_app/
 ├── standardurl.py
 ├── tasks.py
 
-
 auth_app/
 ├── api/
 │   ├── views.py
 │   ├── serializers.py
 │   ├── urls.py
 │   └── permissions.py
+```
 
-manage.py
-requirements.txt
+manage.py <br>
+requirements.txt <br>
 README.md
