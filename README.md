@@ -27,7 +27,7 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 ## 1. Clone the repository
   git clone <br> 
   ```bash
-  https://github.com/Pradi8/project.Quizly-backend  
+    https://github.com/Pradi8/project.Quizly-backend  
   ```  
   ```bash 
     cd project.Quizly-backend
