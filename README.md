@@ -54,12 +54,6 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 
 ## 5. Install system dependencies
 
-#### Install yt-dlp:
-
-```bash
-    pip install yt-dlp
-```
-
 ### WSL / Linux (Ubuntu)
 
 #### Install FFmpeg
@@ -79,14 +73,56 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 
 #### Install FFmpeg
 
-Download
+Download a Windows build from the official website:
 
 ```bash
   https://ffmpeg.org/download.html
 ```
-Extract to e.g. C:\ffmpeg
 
-Add to PATH: C:\ffmpeg\bin
+or use a trusted build provider:
+
+```bash
+  https://www.gyan.dev/ffmpeg/builds/
+```
+Extract the downloaded archive
+
+Move it to a location such as:
+
+```bash
+  C:\ffmpeg
+```
+
+After extraction, your folder should look like:
+
+```bash
+  C:\ffmpeg\bin
+```
+
+Add FFmpeg to PATH
+
+Add the following path to your Windows environment variables:
+
+```bash
+  C:\ffmpeg\bin
+```
+
+Steps:
+
+1. Open System Environment Variables
+2. Click Environment Variables
+3. Select Path under System Variables
+4. Click Edit
+5. Add:
+
+```bash
+  C:\ffmpeg\bin
+```
+6. Save and close all dialogs
+7. Verify Installation
+   Open a new terminal and run:
+```bash
+  ffmpeg -version
+```
 
 #### Install Deno
 
