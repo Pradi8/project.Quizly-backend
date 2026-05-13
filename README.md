@@ -40,7 +40,7 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 ## 3. Activate the virtual environment
 ### <b>Linux/Mac</b>
 ```bash
-  env/bin/activate  
+  source env/bin/activate  
 ```
 ### <b>Windows</b>
 ```bash
