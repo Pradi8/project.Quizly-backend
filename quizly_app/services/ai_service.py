@@ -12,6 +12,10 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 def generate_quiz(text):
     """
+    Return ONLY valid JSON.
+    No explanations.
+    No markdown.
+    All keys must use double quotes.
     Generates a quiz in JSON format based on the provided transcript text using Gemini API.
     """
 

@@ -149,6 +149,37 @@ Steps:
    brew install deno
 ```
 
+## Gemini Key
+
+### 1. Get a Gemini API Key
+
+This project requires a **Google Gemini API key**.
+
+1. Go to https://aistudio.google.com/app/apikey
+2. Sign in with your Google account
+3. Click **Create API Key**
+4. Copy your API key
+
+---
+
+### 2. Create a `.env` file
+
+Create a `.env` file in the project root directory and add your API key:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+## Notes
+
+Make sure your `.env` file is not committed to Git. Add it to `.gitignore`:
+
+```
+gitignore.env
+```
+
+If the API key is missing or invalid, the application will not be able to connect to the Gemini API.
+
 ## 6. Create database migrations
 ```bash
   python manage.py makemigrations
