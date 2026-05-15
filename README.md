@@ -21,6 +21,7 @@ Authentication is handled using JWT (JSON Web Tokens) and HTTP-only cookies to e
 
 ### Requirements
 - Python 3.12
+- pip 26.1.1
 - ffmpeg
 - yt-dlp
 
