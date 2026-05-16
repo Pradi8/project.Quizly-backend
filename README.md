@@ -163,13 +163,30 @@ This project requires a **Google Gemini API key**.
 
 ---
 
-### 2. Create a `.env` file
+### 2. Create your .env file
 
-Create a `.env` file in the project root directory and add your API key:
+### Linux / macOS / Git Bash
 
-```env
-GEMINI_API_KEY=your_api_key_here
 ```
+cp .env.example .env
+```
+### Windows (CMD)
+
+```
+copy .env.example .env
+```
+
+### Windows (PowerShell)
+
+```
+Copy-Item .env.example .env
+```
+
+### 3. Configure your .env
+
+Open the .env file and fill in your value:
+
+GEMINI_API_KEY=your-api-key-here
 
 ## Notes
 
